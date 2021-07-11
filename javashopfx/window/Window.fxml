@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?language JavaScript?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.input.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="397.0" prefWidth="552.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javashopfx.window.WindowController">
+    <stylesheets>
+        <URL value="@window.css" />
+    </stylesheets>
+   <children>
+      <MenuBar styleClass="menuBar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Файл">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#createMenuAction" text="Создать...">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+              </MenuItem>
+              <SeparatorMenuItem mnemonicParsing="false" />
+              <MenuItem mnemonicParsing="false" onAction="#openMenuAction" text="Открыть">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+              </MenuItem>
+                  <Menu fx:id="lastOpenedMenu" disable="true" mnemonicParsing="false" text="Последние" />
+              <SeparatorMenuItem mnemonicParsing="false" />
+              <MenuItem mnemonicParsing="false" onAction="#saveMenuAction" text="Сохранить">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+              </MenuItem>
+              <MenuItem mnemonicParsing="false" onAction="#saveAsMenuAction" text="Сохранить как...">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator>
+              </MenuItem>
+              <SeparatorMenuItem mnemonicParsing="false" />
+              <MenuItem mnemonicParsing="false" onAction="#quitMenuAction" text="Выход" />
+            </items>
+          </Menu>
+          <Menu fx:id="editMenu" mnemonicParsing="false" text="Правка">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#undoMenuAction" text="Отменить">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="Z" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#redoMenuAction" text="Повторить">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="Y" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#clearHistoryMenuAction" text="Очистить историю" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+               </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <GridPane layoutX="-1.0" layoutY="25.0" prefHeight="241.0" prefWidth="252.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="NEVER" maxWidth="30.0" minWidth="-Infinity" prefWidth="27.0" />
+            <ColumnConstraints hgrow="NEVER" maxWidth="127.0" minWidth="-Infinity" prefWidth="126.0" />
+          <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="469.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+        </rowConstraints>
+         <children>
+            <ToolBar fx:id="toolBar" orientation="VERTICAL" prefHeight="40.0" prefWidth="200.0" styleClass="toolBar" />
+            <GridPane GridPane.columnIndex="1" GridPane.valignment="TOP">
+              <columnConstraints>
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="189.0" minHeight="-Infinity" prefHeight="106.0" />
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="266.0" vgrow="ALWAYS" />
+              </rowConstraints>
+               <children>
+                  <ScrollPane fx:id="toolSettingsPane" focusTraversable="false" hbarPolicy="NEVER" prefHeight="272.0" prefWidth="126.0" styleClass="layersScrollPane" GridPane.rowIndex="1" />
+                  <Pane prefHeight="115.0" prefWidth="118.0" styleClass="controlsPane">
+                     <children>
+                        <Label fx:id="zoomLabel" alignment="CENTER_RIGHT" layoutX="64.0" layoutY="48.0" prefHeight="17.0" prefWidth="54.0" styleClass="zoomLabel" text="100%" />
+                        <Slider fx:id="resizeSlider" layoutY="67.0" onMouseDragged="#resizeSliderDrag" onMouseReleased="#resizeSliderMouseReleased" prefHeight="17.0" prefWidth="118.0" value="90.0">
+                           <styleClass>
+                              <String fx:value="zoomSlider" />
+                           </styleClass></Slider>
+                           
+                        <Label layoutX="24.0" layoutY="24.0" prefHeight="32.0" prefWidth="32.0" styleClass="colorRectangleBackground" />
+                        <Rectangle fx:id="secondaryColorRect" fill="WHITE" height="32.0" layoutX="24.0" layoutY="24.0" stroke="BLACK" strokeType="INSIDE" styleClass="colorRectangle" width="32.0" />
+                        
+                        <Label layoutX="8.0" layoutY="8.0" prefHeight="32.0" prefWidth="32.0" styleClass="colorRectangleBackground" />
+                        <Rectangle fx:id="primaryColorRect" height="32.0" layoutX="8.0" layoutY="8.0" stroke="BLACK" strokeType="INSIDE" styleClass="colorRectangle" width="32.0" />
+                        
+                        <Button layoutX="62.0" layoutY="6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#swapColorsButtonAction" prefHeight="20.0" prefWidth="25.0">
+                           <styleClass>
+                              <String fx:value="groupButton" />
+                              <String fx:value="groupButtonLeft" />
+                              <String fx:value="swapColorsButton" />
+                           </styleClass></Button>
+                        <Button layoutX="86.0" layoutY="6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#setDefaultColorsButtonAction" prefHeight="20.0" prefWidth="24.0">
+                           <styleClass>
+                              <String fx:value="groupButton" />
+                              <String fx:value="groupButtonRight" />
+                              <String fx:value="defaultColorsButton" />
+                           </styleClass></Button>
+                        <ColorPicker fx:id="secondaryColorPicker" layoutX="24.0" layoutY="24.0" onAction="#changeSecondaryColor" opacity="0.0" prefHeight="32.0" prefWidth="32.0" />
+                        <ColorPicker fx:id="primaryColorPicker" layoutX="8.0" layoutY="8.0" onAction="#changePrimaryColor" opacity="0.0" prefHeight="32.0" prefWidth="32.0" />
+                        <Label fx:id="toolNameLabel" layoutX="10.0" layoutY="88.0" prefHeight="17.0" prefWidth="99.0" text="-">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                     </children>
+                  </Pane>
+               </children>
+            </GridPane>
+            <GridPane GridPane.columnIndex="2">
+              <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="385.0" />
+                <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="14.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="358.0" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="14.0" vgrow="NEVER" />
+              </rowConstraints>
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                     <children>
+                        <ScrollBar fx:id="horizontalImageScrollBar" styleClass="imageScrollbar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                     <children>
+                        <ScrollBar fx:id="verticalImageScrollBar" orientation="VERTICAL" styleClass="imageScrollbar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="imagePane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="1.0" minWidth="1.0" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+                     <children>
+                        <ImageView fx:id="imageCanvas" fitHeight="339.0" fitWidth="366.0" focusTraversable="true" onMouseDragged="#canvasMouseDragged" onMouseMoved="#canvasMouseMoved" onMousePressed="#canvasMousePressed" onMouseReleased="#canvasMouseReleased" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </GridPane>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

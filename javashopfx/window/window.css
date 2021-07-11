@@ -1,0 +1,121 @@
+/*
+ * Custom stylesheet
+ */
+
+
+.mainFxmlClass {
+    -fx-base: rgba(60, 63, 65, 255);
+    -fx-focus-color: rgba(0,0,0,0);
+}
+
+.toolButton:focused,
+.zoomSlider:focused .thumb,
+.groupButton:focused {
+    -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-background-insets: 0, 1, 2;
+}
+
+.imageScrollPane:focused,
+.layersScrollPane:focused {
+    -fx-background-color: -fx-box-border, -fx-control-inner-background;
+    -fx-background-insets: 1, 1;
+    -fx-background-radius: 0;
+}
+
+.imageScrollPane ,
+.layersScrollPane {
+    -fx-background-insets: 1, 1;
+}
+
+.menuBar {
+    -fx-background-color:
+        linear-gradient(to bottom, derive(-fx-base,15%) 0%, -fx-outer-border 90%),
+        linear-gradient(to bottom, derive(-fx-base,15%) 2%, derive(-fx-base,-2.1%) 95%);
+}
+
+.toolBar {
+    -fx-background-color:
+        -fx-outer-border,
+        -fx-base;
+    -fx-padding: 0.1em 0.1em 0.1em 0.1em; 
+    -fx-spacing: 0.1em; 
+}
+
+.scroll-bar:hover .thumb {
+    -fx-color: -fx-hover-base;
+}
+
+.imageBorderPane {
+    -fx-background-color: derive(-fx-base,-10%);
+}
+
+
+.imageCanvas {
+    -fx-border-color: derive(-fx-base,-40%);
+    -fx-border-width: 11px;
+}
+
+
+.layersScrollPane {
+    
+}
+
+.layersFlowPane {
+    
+}
+
+
+.controlsPane {
+    
+}
+
+.groupButton {
+    -fx-background-radius: 0;
+}
+
+.groupButtonLeft {
+    -fx-background-radius: 8 0 0 8;
+}
+
+.groupButtonCenter {
+    
+}
+
+.groupButtonRight {
+    -fx-background-radius: 0 8 8 0;
+}
+
+.defaultColorsButton {
+    -fx-background-image: url(/resources/defaultcolors.png); 
+    -fx-background-repeat: no-repeat;
+}
+
+.swapColorsButton {
+    -fx-background-image: url(/resources/colorswap.png);
+    -fx-background-repeat: no-repeat;
+}
+
+.colorRectangle {
+    -fx-background-image: url(/resources/colorrectbackground.png);
+}
+
+.colorRectangleBackground {
+    -fx-background-image: url(/resources/colorrectbackground.png);
+}
+
+.toolButton {
+    
+}
+
+
+.colorRectangle {
+    
+}
+
+.zoomSlider {
+    
+}
+
+.zoomLabel {
+    
+}

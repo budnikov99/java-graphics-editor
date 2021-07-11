@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="267.0" prefWidth="126.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javashopfx.tools.canvasresizer.ResizeToolController">
+   <children>
+      <Label layoutX="10.0" layoutY="14.0" text="Ширина" />
+      <Label layoutX="8.0" layoutY="75.0" text="Высота" />
+      <TextField fx:id="widthField" alignment="CENTER_RIGHT" layoutX="9.0" layoutY="36.0" onKeyPressed="#widthTyped" prefHeight="25.0" prefWidth="76.0" />
+      <TextField fx:id="heightField" alignment="CENTER_RIGHT" layoutX="9.0" layoutY="95.0" onKeyPressed="#heightTyped" prefHeight="25.0" prefWidth="76.0" />
+      <CheckBox fx:id="proportionCheckBox" layoutX="4.0" layoutY="136.0" mnemonicParsing="false" onMouseClicked="#proportionsClicked" text="Пропорции" />
+      <RadioButton fx:id="pixelRadioButton" layoutX="12.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#modeRBClicked" selected="true" text="Пикселы">
+         <toggleGroup>
+            <ToggleGroup fx:id="sl" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="percentRadioButton" layoutX="12.0" layoutY="178.0" mnemonicParsing="false" onMouseClicked="#modeRBClicked" text="\%" toggleGroup="$sl" />
+      <Label layoutX="10.0" layoutY="206.0" prefHeight="53.0" prefWidth="106.0" text="Нажмите на изображение, чтобы применить." textOverrun="CLIP" wrapText="true">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="widthLabel" layoutX="69.0" layoutY="14.0" text="0" textFill="#727272" />
+      <Label fx:id="heightLabel" layoutX="69.0" layoutY="75.0" text="0" textFill="#727272" />
+   </children>
+</Pane>

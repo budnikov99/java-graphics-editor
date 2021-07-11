@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="169.0" prefWidth="126.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javashopfx.tools.selection.SelectionSettingsController">
+    <stylesheets>
+        <URL value="@/javashopfx/window/window.css" />
+    </stylesheets>
+   <children>
+      <RadioButton fx:id="copyModeToggle" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" selected="true" text="Копировать">
+         <toggleGroup>
+            <ToggleGroup fx:id="modeGroup" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="cutModeToggle" layoutX="14.0" layoutY="31.0" mnemonicParsing="false" text="Вырезать" toggleGroup="$modeGroup" />
+      <Button layoutX="6.0" layoutY="136.0" mnemonicParsing="false" onAction="#applyAction" prefHeight="25.0" prefWidth="114.0" text="Применить" />
+      <Button layoutX="14.0" layoutY="61.0" mnemonicParsing="false" onAction="#resetAction" prefHeight="25.0" prefWidth="90.0" text="Сброс" />
+      <Button layoutX="14.0" layoutY="86.0" mnemonicParsing="false" onAction="#selectAllAction" text="Выделить всё" />
+   </children>
+</AnchorPane>
